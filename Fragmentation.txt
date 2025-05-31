@@ -1,0 +1,53 @@
+Fragmentation in operating systems refers to the inefficient use of memory due to the division of available memory into non-contiguous blocks. It occurs when memory is allocated and deallocated in such a way that free memory is split into small, scattered blocks, which makes it challenging to allocate contiguous memory to processes.
+
+### Types of Fragmentation
+
+1. **Internal Fragmentation**:
+
+   * Occurs when a fixed-sized memory block is allocated to a process, but the process doesn’t use the entire block.
+   * The unused memory within the allocated block is wasted.
+
+   **Example**:
+   Suppose the operating system uses fixed-size blocks of 4 KB for memory allocation. If a process requests 6 KB of memory, it will be allocated two blocks (8 KB in total). The remaining 2 KB in the second block will be wasted due to internal fragmentation.
+
+2. **External Fragmentation**:
+
+   * Occurs when free memory is available but scattered in non-contiguous blocks.
+   * Even though the total free memory is sufficient to fulfill a process's request, the memory cannot be allocated because it isn’t contiguous.
+
+   **Example**:
+   Consider a system with 100 MB of total memory, and assume the following memory allocation and deallocation:
+
+   * Process A (30 MB) allocated, Process B (40 MB) allocated, and Process C (20 MB) allocated.
+   * Process B is deallocated, leaving a free block of 40 MB.
+   * Now, if a new process requests 50 MB, it cannot be accommodated because the free memory is not contiguous (30 MB + 40 MB is available, but scattered).
+
+### Best Example with Visualization:
+
+Imagine a parking lot with fixed-sized parking spaces (internal fragmentation):
+
+* A small car uses one parking space and leaves extra space unused. The unused space represents **internal fragmentation**.
+
+Imagine a parking lot without fixed-sized parking spaces (external fragmentation):
+
+* Cars of various sizes park and leave gaps that are too small for other cars to use. The gaps represent **external fragmentation**.
+
+### How to Handle Fragmentation
+
+1. **Compaction**:
+
+   * Rearrange the memory to combine all free spaces into a single block.
+   * Useful for external fragmentation but can be time-consuming.
+
+2. **Paging and Segmentation**:
+
+   * Paging eliminates external fragmentation by dividing memory into fixed-sized pages.
+   * Segmentation eliminates external fragmentation to some extent by dividing memory into variable-sized segments.
+
+3. **Best Fit, First Fit, and Worst Fit Allocation**:
+
+   * These allocation strategies aim to minimize fragmentation.
+
+### Summary:
+
+Fragmentation is a natural outcome of dynamic memory allocation. While internal fragmentation wastes space within blocks, external fragmentation scatters free space. Effective memory management strategies like paging, segmentation, or compaction help mitigate its impact.
